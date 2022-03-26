@@ -2,7 +2,6 @@ const Sequelize = require('sequelize');
 const connection = require('../database/database.js');
 const Category = require("../categories/Category.js")
 
-
 const Article = connection.define('articles',{
     title:{
         type: Sequelize.STRING,
@@ -18,9 +17,9 @@ const Article = connection.define('articles',{
     }
 })
         // tem muitos
-//Category.hasMany(Article);
+Category.hasMany(Article);
         //pertence a 
-//Article.belongsTo(Category);
+Article.belongsTo(Category);
 
 //Article.sync({force: true});
 

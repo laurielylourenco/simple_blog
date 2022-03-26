@@ -10,7 +10,8 @@
                 <h2>Editação de categoria</h2>
              </div> 
              <div class="card-body">
-                <form action="/categorias/update" method="POST">      
+                <form action="/categorias/update" method="POST">    
+                    <input type="hidden" name="id" value="<%= categories.id %>">  
                     <input type="text" class="form-control" name="title" value="<%= categories.title%>" >
                     <button  class=" mt-2 btn btn-outline-primary">Atualizar</button>
                 </form>

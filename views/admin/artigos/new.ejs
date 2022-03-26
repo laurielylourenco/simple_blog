@@ -1,0 +1,40 @@
+<%- include('../../partials/header.ejs') %>
+<%- include('../../partials/navbar.ejs') %>
+<body>
+    <div class="container">
+
+        <hr>
+
+        <div class="card">
+            <div class="card-header">
+                <h2>Cadastro de artigo</h2>
+             </div> 
+             <div class="card-body">
+                <form action="/article/save" method="POST">      
+                    <input type="text" class="form-control" name="title" placeholder=" titulo para categoria" >
+                    <br>
+                    <textarea class="form-control" id="article" placeholder="Escreva artigos"
+                    name="body">
+                        
+                    </textarea>
+                    <br>
+                    <label>Categoria</label>
+                    <select  name="category" class="form-control" na>
+                            <% categories.forEach(category => { %>
+                                <option value="<%= category.id %>" ><%= category.title %></option>
+                            <%  }) %>
+                    </select>
+                    <br>
+                    <button  class=" mt-2 btn btn-outline-primary">Cadastrar</button>
+                </form>
+            </div>
+          
+        </div>
+    </div>    
+</body>
+
+
+
+
+
+<%- include('../../partials/footer.ejs') %>

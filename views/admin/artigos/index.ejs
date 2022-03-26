@@ -1,0 +1,61 @@
+<%- include('../../partials/header.ejs') %>
+<%- include('../../partials/navbar.ejs') %>
+<body>
+    <div class="container">
+
+        <hr>
+        <h2>Artigos</h2>
+        <a class="btn btn-success" href="/admin/articles/new" >Cria nova artigos</a>
+        <hr>
+
+        <table class="table">
+    	<thead>
+    		
+    		<tr>
+    			<th>ID</th>
+    			<th>Titulo</th>
+    			<th>Slug</th>
+    			<th>Categoria</th>
+    			<th>Ações</th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		
+    		<% articles.forEach(article => { %>
+			<tr>
+    			<td><%= article.id %></td>
+    			<td><%= article.title %></td>
+    			<td><%= article.slug %></td>
+    			<td><%= article.category.title %></td>
+    			
+    			<td>
+    				<a class="btn btn-warning" href="/admin/artigos/update/<%= article.id %>" 
+    			       style="display: inline;" >Editar</a>
+    				
+    				<form method="POST" action="/artigos/delete" style="display: inline;" 
+    				onsubmit="confDelete(event,this)">
+    					<input type="hidden" name="id" value="<%= article.id %>">
+    					<button class="btn btn-danger" >Deletar</button>
+    				</form>
+    				
+    			</td>
+    		</tr>
+    		<%  }) %>
+    	</tbody>
+    </table>
+    </div>
+    
+
+</body>
+<script type="text/javascript">
+	function  confDelete(event,form) {
+		event.preventDefault(); // impedir que form seja enviado
+		var de = confirm("Vc quer deletar essa categoria?")
+		
+		if(de){
+			form.submit()
+		}
+	}
+</script>
+
+<%- include('../../partials/footer.ejs') %>

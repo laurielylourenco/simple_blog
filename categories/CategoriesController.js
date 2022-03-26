@@ -21,11 +21,11 @@ router.post("/categorias/save", (req,res)=>{
             title: title,
             slug: slugify(title)
         }).then(() =>{
-            res.redirect("/")
+            res.redirect("admin/categorias")
         })
 
     }else{
-        res.redirect("/admin/categorias/new")
+        res.redirect("/admin/categorias")
     }
 });
 
@@ -83,6 +83,28 @@ router.get("/admin/categorias/update/:id", (req,res)=>{
         res.redirect("/admin/categorias")
     }
     
+});
+
+
+
+router.post("/categorias/update", (req,res)=>{
+    var title = req.body.title;
+    var id = req.body.id;
+
+    if(title != undefined && id != undefined){
+
+        Category.update({title: title, slug: slugify(title)},{
+            where: {
+                id: id
+            }
+        })
+        .then(() =>{
+            res.redirect("admin/categorias")
+        })
+
+    }else{
+        res.redirect("/admin/categorias")
+    }
 });
 
 module.exports = router;
