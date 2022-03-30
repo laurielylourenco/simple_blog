@@ -40,29 +40,61 @@ router.post("/article/save", (req,res)=>{
 
 });
 
-router.post("/artigos/delete", (req,res)=>{
+router.post("/articles/delete", (req,res)=>{
     var id = req.body.id;
 
     if(id != undefined){
 
        if(!isNaN(id)){
-        Category.destroy({
+        Article.destroy({
             where :{
                 id:id
             }
         }).then(() =>{
 
-            res.redirect("/admin/categorias")
+            res.redirect("/admin/articles")
         })
 
 
        }else{
-         res.redirect("/admin/categorias")
+         res.redirect("/admin/articles")
        }
 
     }else{
-        res.redirect("/admin/categorias")
+        res.redirect("/admin/articles")
     }
 });
+
+
+router.get("/articles/edit/:id", (req,res)=>{
+    var id = req.params.id;
+
+    if(id != undefined){
+
+       if(!isNaN(id)){
+
+        Article.findByPk(id).then(article => {
+
+            if(article != undefined){
+
+                Category.findAll().then(categories => {
+                  res.render("admin/artigos/edit", {categories:categories, articles:article});
+                });
+            }else{
+                res.redirect("/admin/articles")
+            }
+        }).catch(err =>{
+            res.redirect("/admin/articles")
+        })
+
+       }else{
+         res.redirect("/admin/articles")
+       }
+
+    }else{
+        res.redirect("/admin/articles")
+    }
+});
+
 
 module.exports = router;

@@ -29,10 +29,10 @@
     			<td><%= article.category.title %></td>
     			
     			<td>
-    				<a class="btn btn-warning" href="/admin/artigos/update/<%= article.id %>" 
+    				<a class="btn btn-warning" href="/articles/edit/<%= article.id %>" 
     			       style="display: inline;" >Editar</a>
     				
-    				<form method="POST" action="/artigos/delete" style="display: inline;" 
+    				<form method="POST" action="/articles/delete" style="display: inline;" 
     				onsubmit="confDelete(event,this)">
     					<input type="hidden" name="id" value="<%= article.id %>">
     					<button class="btn btn-danger" >Deletar</button>

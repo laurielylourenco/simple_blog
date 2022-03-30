@@ -33,8 +33,69 @@ app.use("/", articlesController);
 
 
 app.get('/', (req,res) => {
-	res.render("index")
+	
+	Articles.findAll({
+		order:[
+			['id','DESC']
+		]
+	}).then(articles =>{
+
+		Category.findAll().then(cate =>{
+			res.render("index", {articles:articles, categories: cate})
+		})
+		
+	})
+	
 })
+
+app.get('/:slug', (req,res) => {
+	var slug  = req.params.slug;
+
+	Articles.findOne({
+		where:{
+			slug:slug
+		}	
+	}).then(articles =>{
+		if(articles != undefined){
+			
+			Category.findAll().then(cate =>{
+				res.render("article", {articles:articles, categories: cate})
+			})
+
+		}else{
+			res.redirect("/")
+		}
+	}).catch(err =>{
+		res.redirect("/")
+	})
+	
+})
+
+app.get('/category/:slug', (req,res) => {
+	var slug  = req.params.slug;
+
+	Category.findOne({
+		where:{
+			slug:slug
+		},
+		include:[{model:Articles}]	
+	}).then(category =>{
+		if(category != undefined){
+			
+			Category.findAll().then(cate =>{
+				res.render("index", {articles: category.articles, categories: cate})
+			})
+
+		}else{
+			res.redirect("/")
+		}
+	}).catch(err =>{
+		res.redirect("/")
+	})
+	
+})
+
+
 
 app.listen(4500, () =>{
 	console.log('Run, run')	
