@@ -3,10 +3,11 @@ const router = express.Router();
 const Category = require("../categories/Category")
 const Article = require("./Articles.js");
 const slugify = require("slugify");
+const adminAuth = require("../middleware/admin.js")
 
-
-router.get("/admin/articles", (req,res) =>{
+router.get("/admin/articles",adminAuth, (req,res) =>{
   
+  console.log(req.session.user);
   Article.findAll({
 
   	 include: [{model: Category}]
@@ -16,7 +17,7 @@ router.get("/admin/articles", (req,res) =>{
     })
 })
 router.get("/admin/articles/new",(req,res) => {
-
+  console.log(req.session.user);
 	//para selecionar a categoria na view
     Category.findAll().then(categories => {
         res.render("admin/artigos/new", {categories:categories});
@@ -78,7 +79,7 @@ router.get("/articles/edit/:id", (req,res)=>{
             if(article != undefined){
 
                 Category.findAll().then(categories => {
-                  res.render("admin/artigos/edit", {categories:categories, articles:article});
+                  res.render("admin/artigos/edit", {categories:categories, article:article});
                 });
             }else{
                 res.redirect("/admin/articles")
@@ -94,6 +95,28 @@ router.get("/articles/edit/:id", (req,res)=>{
     }else{
         res.redirect("/admin/articles")
     }
+});
+
+
+router.post("/article/update", (req,res)=>{
+    var title = req.body.title;
+    var id = req.body.id;
+    var body = req.body.body;
+    var cat = req.body.category;
+
+    
+
+        Article.update({title: title, body: body, categoryId: cat,slug: slugify(title)},{
+            where: {
+                id: id
+            }
+        })
+        .then(() =>{
+            res.redirect("/admin/articles")
+        }).catch((erro) =>{
+            res.redirect("/")
+        })
+
 });
 
 

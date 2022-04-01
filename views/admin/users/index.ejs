@@ -1,0 +1,56 @@
+<%- include('../../partials/header.ejs') %>
+<%- include('../../partials/navbar.ejs') %>
+<body>
+    <div class="container">
+
+        
+        <h2>Logins</h2>
+        <hr>
+
+        <table class="table">
+    	<thead>
+    		
+    		<tr>
+    			<th>ID</th>
+    			<th>Email</th>
+
+    		</tr>
+    	</thead>
+    	<tbody>
+    		
+    		<% users.forEach(user => { %>
+				<tr>
+    			<td><%= user.id %></td>
+    			<td><%= user.email %></td>
+    			<td>
+    				
+    			<a class="btn btn-warning" href="/admin/user/update/<%= user.id %>" style="display: inline;" >Editar</a>
+    				
+
+    				<form method="POST" action="/user/delete" style="display: inline;" 
+    				onsubmit="confDelete(event,this)">
+    					<input type="hidden" name="id" value="<%= user.id %>">
+    					<button class="btn btn-danger" >Deletar</button>
+    				</form>
+    				
+    			</td>
+    		</tr>
+    		<%  }) %>
+    	</tbody>
+    </table>
+    </div>
+    
+
+</body>
+<script type="text/javascript">
+	function  confDelete(event,form) {
+		event.preventDefault(); // impedir que form seja enviado
+		var de = confirm("Vc quer deletar essa categoria?")
+		
+		if(de){
+			form.submit()
+		}
+	}
+</script>
+
+<%- include('../../partials/footer.ejs') %>
