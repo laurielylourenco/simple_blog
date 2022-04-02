@@ -17,9 +17,9 @@
 
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
-- [ ] Terminar Login de Admin com middleware
-- [ ] Mehorar front end de listagens de artigos 
-
+- [ ] Terminar o login de administrativo
+- [ ] Mehorar o front end de listagens de artigos 
+- [ ] Mehorar o front_end no geral
 
 
 
