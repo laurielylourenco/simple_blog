@@ -50,8 +50,9 @@ router.post("/authenticate",(req,res) =>{
 	var password = req.body.password;
 
 		User.findOne({where:{email:email}}).then(user => {
-			if(user == undefined){
+			if(user != undefined){
 				//validar senha
+				
 				var correct  = bcryptjs.compareSync(password,user.password);
 
 				if(correct){
@@ -59,8 +60,10 @@ router.post("/authenticate",(req,res) =>{
 						id : user.id,
 						email: user.email
 					}
+					console.log("_____________________________")
+					console.log(req.session.user)
 
-					res.redirect("/")
+					res.redirect("/admin/articles")
 				}else{
 					res.redirect("/login")
 				}

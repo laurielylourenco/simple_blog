@@ -16,7 +16,7 @@ router.get("/admin/articles",adminAuth, (req,res) =>{
         res.render("admin/artigos/index",{articles: articles});    
     })
 })
-router.get("/admin/articles/new",(req,res) => {
+router.get("/admin/articles/new",adminAuth,(req,res) => {
   console.log(req.session.user);
 	//para selecionar a categoria na view
     Category.findAll().then(categories => {
@@ -24,7 +24,7 @@ router.get("/admin/articles/new",(req,res) => {
     })
     
 });
-router.post("/article/save", (req,res)=>{
+router.post("/article/save", adminAuth, (req,res)=>{
     
     var title = req.body.title;
     var body = req.body.body;
@@ -41,7 +41,7 @@ router.post("/article/save", (req,res)=>{
 
 });
 
-router.post("/articles/delete", (req,res)=>{
+router.post("/articles/delete", adminAuth, (req,res)=>{
     var id = req.body.id;
 
     if(id != undefined){
@@ -67,7 +67,7 @@ router.post("/articles/delete", (req,res)=>{
 });
 
 
-router.get("/articles/edit/:id", (req,res)=>{
+router.get("/articles/edit/:id", adminAuth, (req,res)=>{
     var id = req.params.id;
 
     if(id != undefined){
@@ -98,7 +98,7 @@ router.get("/articles/edit/:id", (req,res)=>{
 });
 
 
-router.post("/article/update", (req,res)=>{
+router.post("/article/update", adminAuth, (req,res)=>{
     var title = req.body.title;
     var id = req.body.id;
     var body = req.body.body;
