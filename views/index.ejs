@@ -5,27 +5,39 @@
 
     <div class='container'>
      <br>
-    <h1>HOME</h1>
-    <hr>
-    <br>
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <h1 class="display-4">Simple blog</h1>
+            <p class="lead">Um blog simples apenas para desenvolver ainda mais afinidade com Nodejs</p>
+          </div>
+        </div>
 
+    <br>
+    <div class="row col-lg-12">
     <% articles.forEach(article => { %>
-        <div class='card'>
+        <div class='card col-lg-6 mb-5'>
             <div class='card-header'>
-                <h2> <article><%= article.title %> </article> </h2>
+              <img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="imagem de teste" />
+                
             </div>
             <div class='card-body'>
-                <a class="btn btn-warning" href="/<%= article.slug %>">Ler artigo</a>
+                 <h2 class="card-title h4"><%= article.title %></h2>
+                <a class="btn btn-primary" href="/<%= article.slug %>">Leia mais -></a>
             </div>
 
         </div>
         <br>
     <%  }) %>
+  </div>
 
 
     </div>
+
+
    
-    
+    <footer class="py-5 bg-primary footer">
+        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Dev 2022</p></div>
+    </footer>    
 </body>
 
 <%- include('partials/footer.ejs') %>

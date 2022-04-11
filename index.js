@@ -17,7 +17,7 @@ const User = require("./user/User.js");
 
 app.set('view engine', 'ejs')
 app.use(session({
-	secret: "lslslslsl",cookie: {maxAge: 30000000}
+	secret: "lslslslsl",cookie: {maxAge: 1000 * 60 * 60 * 24}
 
 }))
 

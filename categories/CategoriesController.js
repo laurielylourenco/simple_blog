@@ -4,9 +4,7 @@ const Category = require("./Category.js")
 const slugify = require("slugify")
 const adminAuth = require("../middleware/admin.js")
 
-router.get("/categories",  adminAuth, (req,res) =>{
-    res.send("ROTA DE CATEGORIAS")
-})
+
 
 router.get("/admin/categorias/new", adminAuth, (req,res) => {
     res.render("admin/categorias/new");
@@ -21,7 +19,7 @@ router.post("/categorias/save", adminAuth, (req,res)=>{
             title: title,
             slug: slugify(title)
         }).then(() =>{
-            res.redirect("admin/categorias")
+            res.redirect("/admin/categorias")
         })
 
     }else{
@@ -99,7 +97,7 @@ router.post("/categorias/update", adminAuth, (req,res)=>{
             }
         })
         .then(() =>{
-            res.redirect("admin/categorias")
+            res.redirect("/admin/categorias")
         })
 
     }else{

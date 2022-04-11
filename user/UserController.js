@@ -2,8 +2,10 @@ const express = require("express");
 const router = express.Router();
 const User = require('./User.js');
 const bcryptjs = require("bcryptjs");
+const adminAuth = require("../middleware/admin.js");
 
-router.get("/admin/users",(req,res) =>{
+
+router.get("/admin/users", adminAuth,(req,res) =>{
 
 
 		User.findAll()

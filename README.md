@@ -10,8 +10,10 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/laurielylourenco/simple_blog?style=for-the-badge)
 
 <!--- <img src="exemplo-image.png" alt="exemplo imagem"> --->
-
+  
 > Ideia de blog simples para criar artigos e as categorias desses artigos.Intenção desse projeto é ter ainda mais familiariadade com librarys do NodeJS
+![imagem do projeto for terminal](public/img/home.png)
+
 
 ### Ajustes e melhorias
 
