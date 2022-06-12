@@ -12,16 +12,14 @@
 <!--- <img src="exemplo-image.png" alt="exemplo imagem"> --->
   
 > Um blog simples para criar artigos é categorias desses artigos.Intenção desse projeto é ter ainda mais familiariadade com librarys do NodeJS
-![imagem do projeto for terminal](public/img/home.png)
+> ![image](https://user-images.githubusercontent.com/49760702/173250132-7dd47db4-e7dd-4fc5-8e4d-5d56e616323c.png)
+
+> ![image](https://user-images.githubusercontent.com/49760702/173250092-d6567ac2-8a99-45d2-85eb-8167bcfa7b9d.png)
 
 
-### Ajustes e melhorias
 
-O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
-- [ ] Terminar o login de administrativo
-- [ ] Mehorar o front end de listagens de artigos 
-- [ ] Mehorar o front_end no geral
+
 
 
 
